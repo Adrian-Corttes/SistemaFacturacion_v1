@@ -1,11 +1,11 @@
 <nav>
     <ul>
-        <li><a href="#">Inicio</a></li>
+        <li><a href="../index.php">Inicio</a></li>
         <li class="principal">
             <a href="#">Usuarios</a>
             <ul>
-                <li><a href="#">Nuevo Usuario</a></li>
-                <li><a href="#">Lista de Usuarios</a></li>
+                <li><a href="../usuario/registro_usuario.php">Nuevo Usuario</a></li>
+                <li><a href="../usuario/lista_usuario.php">Lista de Usuarios</a></li>
             </ul>
         </li>
         <li class="principal">

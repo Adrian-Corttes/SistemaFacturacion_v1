@@ -8,7 +8,6 @@ body{
 	font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
     letter-spacing: 1px;
 }
 h1{
@@ -56,6 +55,9 @@ header{
 	align-items: center;
 	padding: 10px;
 }
+.header__title{
+	font-weight: 100;
+}
 .optionsBar{
     display: -webkit-flex;
     display: flex;
@@ -82,7 +84,7 @@ header{
     margin-left: 30px;
 }
 nav ul{
-	background: #07a2f0;;
+	background: rgb(135, 100, 184);;
 	/*background: #05817d;*/
 	list-style: none;
 	display: flex;
@@ -115,7 +117,7 @@ nav ul li:hover ul{
 }
 nav li ul{
 	/*background: #177470;*/
-	background: #07a2f0;
+	background: rgb(135, 100, 184);
 	display: none;
 	flex-direction: column;
 	position: absolute;
@@ -128,7 +130,7 @@ nav li ul a{
 }
 nav li ul a:hover{
 	/*background: #2c9595;*/
-	background: #4c3ca7;
+	background: rgb(124, 77, 189);
 	color:  #FFF;
 }
 nav li ul li:last-child{
@@ -138,8 +140,8 @@ nav li ul li:last-child{
 #container{
 	padding: 90px 15px 15px;
 }
-/*****************************************************************/
-/*Registro Usuarios*/
+
+/**** FORMULARIO DE REGISTRO ******/
 .form_register{
 	width: 450px;
 	margin: auto;
@@ -149,6 +151,7 @@ nav li ul li:last-child{
 }
 .form_register__title{
 	font-size: 20px;
+	font-weight: 100;
 	color: #333333;
 	padding: 10px;
 }
@@ -178,13 +181,16 @@ nav li ul li:last-child{
 }
 .btn_save{
 	font-size: 16px;
-	background: #2196F3;
+	background: rgb(135, 100, 184);;
 	color: #FFF;
 	margin: 10px 0 0 0;
 	font-weight: normal;
 	padding: 7px 12px;
 	border: 0;
-	text-align: right;
+	cursor: pointer;
+}
+.btn_save:hover{
+	background: rgb(124, 77, 189);
 }
 .alert{
 	width: 100%;
@@ -203,4 +209,72 @@ nav li ul li:last-child{
 	background: rgb(14, 199, 153);
 	color: #333333;
 	padding: 5px;
+}
+
+/***** LISTA DE USUARIOS *****/
+
+.container-list__title{
+	font-size: 20px;
+	display: inline-block;
+	font-weight: 100;
+}
+.container-list__btn{
+	display: inline-block;
+	background: rgb(135, 100, 184);
+	color: #FFF;
+	padding: 7px 25px;
+	border-radius: 3px;
+}
+.container-list__btn:hover{
+	background: rgb(124, 77, 189);;
+}
+/*TABLA*/
+.datatable{
+	width: 90%;
+	margin: auto;
+	font-size: 12pt;
+	border: solid 1px rgb(199, 196, 196);
+	border-collapse: collapse;
+	background-color: #FFF;
+}
+.datatable__title{
+	display: flex;
+	justify-content: space-between;
+	width: 90%;
+	margin: auto;
+	margin-bottom: 20px;
+
+}
+.datatable th{
+	padding: 5px;
+	text-align: left;
+}
+.datatable td{
+	padding: 10px;
+}
+.datatable__thead{
+	border-bottom: solid 1px black;
+}
+.datatable__body tr{
+	border-bottom: solid 1px rgb(199, 196, 196);
+}
+.delete-icon{
+	padding: 5px;
+	font-size: 20px;
+	border-radius: 5px;
+	color: #242424;
+}
+.delete-icon:hover{
+	background: rgb(135, 100, 184);
+	color: #FFF;
+}
+.edit-icon{
+	padding: 5px;
+	font-size: 20px;
+	border-radius: 5px;
+	color: #242424;
+}
+.edit-icon:hover{
+	background: rgb(135, 100, 184);
+	color: #FFF;
 }

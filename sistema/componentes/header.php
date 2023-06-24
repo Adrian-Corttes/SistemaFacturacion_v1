@@ -7,7 +7,7 @@
 <header>
     <div class="header">
 
-        <h1>Sistema Facturación V1.0</h1>
+        <h1 class="header__title">Sistema Facturación V1.0</h1>
         <div class="optionsBar">
             <p> Colombia, <?php echo fechaC();?> </p>
             <span>|</span>

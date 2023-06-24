@@ -1,36 +1,48 @@
 <?php
-include "../../conexion.php";
-
-if (!empty($_POST)) {
-    $alert = "";
-
-    if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['user']) || empty($_POST['password']) || empty($_POST['rol'])) {
-        $alert = '<p class="msg_error">Oupss!... Todos los campos son obligatorios.</p>';
-    } else {
-
-        $nombre = $_POST['name'];
-        $email = $_POST['email'];
-        $user = $_POST['user'];
-        $clave = md5($_POST['password']);
-        $rol = $_POST['rol'];
-
-        $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' OR correo = '$email'");
-        $result = mysqli_fetch_array($query);
-
-        if ($result > 0) {
-            $alert = '<p class="msg_error">Oupss!... El correo o el usuario ya existen.</p>';
+    include "../../conexion.php";
+    //Validamos que si se este enviando información via POST
+    if (!empty($_POST)) {
+        $alert = "";
+        //validamos que los campos dl formulario no vayan vacios
+        if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['user']) || empty($_POST['password']) || empty($_POST['rol'])) {
+            $alert = '<p class="msg_error">Oupss!... Todos los campos son obligatorios.</p>';
         } else {
-            $query_insert = mysqli_query($conection, "INSERT INTO usuario(nombre,correo,usuario,clave,rol) 
-                VALUES ('$nombre','$email','$user','$clave','$rol')");
 
-            if ($query_insert) {
-                $alert = '<p class="msg_save">Usuario registrado con exito.</p>';
+            $nombre = $_POST['name'];
+            $email = $_POST['email'];
+            $user = $_POST['user'];
+            $clave = md5($_POST['password']);
+            $rol = $_POST['rol'];
+
+            $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' OR correo = '$email'");
+            $result = mysqli_fetch_array($query);
+
+            if ($result > 0) {
+                $alert = '<p class="msg_error">Oupss!... El correo o el usuario ya existen.</p>';
             } else {
-                $alert = '<p class="msg_error">Oupss!... Error al crear el usuario.</p>';
+                $query_insert = mysqli_query($conection, "INSERT INTO usuario(nombre,correo,usuario,clave,rol) 
+                        VALUES ('$nombre','$email','$user','$clave','$rol')");
+
+                if ($query_insert) {
+                    $alert = '<p class="msg_save">Usuario registrado con exito.</p>';
+                } else {
+                    $alert = '<p class="msg_error">Oupss!... Error al crear el usuario.</p>';
+                }
             }
         }
     }
-}
+
+    //Validamos que el id no vaya vacio
+    if (empty($_GET['id'])) {
+        header('Location: ./lista_usuario.php');
+    }
+    $iduser = $_GET['id'];
+    $query2 = mysqli_query($conection, "SELECT u.idusuario,u.nombre,u.correo,u.usuario, (u.rol) as idrol, (r.rol) as rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE idusuario = $iduser");
+    $query_result = mysqli_num_rows($query2);
+
+    if($query_result == 0){
+        header('Location: ./lista_usuario.php');
+    } 
 ?>
 
 <!DOCTYPE html>
@@ -40,7 +52,7 @@ if (!empty($_POST)) {
     <meta charset="UTF-8">
     <?php include "../componentes/scripts.php" ?>
     <link rel="stylesheet" href="../css/style.css">
-    <title>Registro Usuario</title>
+    <title>Editar Usuario</title>
 </head>
 
 <body>
@@ -48,7 +60,7 @@ if (!empty($_POST)) {
 
     <section id="container">
         <div class="form_register">
-            <h1 class="form_register__title">Ingresar Usuario</h1>
+            <h1 class="form_register__title">Editar Usuario</h1>
             <form action="#" method="POST" class="form">
                 <div class="alert">
                     <?php echo isset($alert) ? $alert : " " ?>
@@ -75,14 +87,14 @@ if (!empty($_POST)) {
                         while ($rol = mysqli_fetch_array($query_rol)) {
 
                     ?>
-                            <option value="<?php echo $rol['idrol']?>"><?php echo $rol['rol']?></option>
+                            <option value="<?php echo $rol['idrol'] ?>"><?php echo $rol['rol'] ?></option>
                     <?php
                         }
                     }
                     ?>
 
                 </select>
-                <input type="submit" value="Guardar" class="btn_save" style="text-align: right;">
+                <input type="submit" value="Editar" class="btn_save" style="text-align: right;">
             </form>
         </div>
     </section>
