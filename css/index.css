@@ -7,6 +7,9 @@ html{
     font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif;
 }
 /*FORMULARIO DE ACCCESO*/
+.title{
+    font-weight: 100;
+}
 .container_form{
     width: 100%;
     height: 100vh;
@@ -21,6 +24,7 @@ html{
 }
 .form__title{
     font-size: 2rem;
+    font-weight: 100;
     text-align: center;
     text-transform: uppercase;
     background-color: #242424;

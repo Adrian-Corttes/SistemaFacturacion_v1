@@ -3,18 +3,22 @@
     //Validamos que si se este enviando información via POST
     if (!empty($_POST)) {
         $alert = "";
-        //validamos que los campos dl formulario no vayan vacios
-        if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['user']) || empty($_POST['password']) || empty($_POST['rol'])) {
-            $alert = '<p class="msg_error">Oupss!... Todos los campos son obligatorios.</p>';
-        } else {
 
+        //validamos que los campos del formulario no vayan vacios
+        if (empty($_POST['name']) || empty($_POST['email']) || empty($_POST['user'])|| empty($_POST['rol'])) {
+            $alert = '<p class="msg_error">Oupss!... Todos los campos son obligatorios.</p>';
+
+        } else {
+            $idUsuario = $_POST('idusuario');
             $nombre = $_POST['name'];
             $email = $_POST['email'];
             $user = $_POST['user'];
             $clave = md5($_POST['password']);
             $rol = $_POST['rol'];
+           
+            echo "SELECT * FROM usuario WHERE (usuario = $user AND idusuario = $idUsuario) OR (correo = $email AND idusuario = $idUsuario "; exit;
 
-            $query = mysqli_query($conection, "SELECT * FROM usuario WHERE usuario = '$user' OR correo = '$email'");
+            $query = mysqli_query($conection, "SELECT * FROM usuario WHERE (usuario = $user AND idusuario = $idUsuario) OR (correo = $email AND idusuario = $idUsuario ");
             $result = mysqli_fetch_array($query);
 
             if ($result > 0) {
@@ -42,7 +46,28 @@
 
     if($query_result == 0){
         header('Location: ./lista_usuario.php');
-    } 
+    }
+    else{
+        $option = '';
+        while($data = mysqli_fetch_array($query2)){
+            $iduser = $data['idusuario'];
+            $nombre = $data['nombre'];
+            $correo = $data['correo'];
+            $usuario = $data['usuario'];
+            $idrol = $data['idrol'];
+            $rol = $data['rol'];
+
+            if($idrol == 1){
+                $option = '<option value="'.$idrol.'" select >'.$rol.'</option>';
+            }
+            else if($idrol == 2){
+                $option = '<option value="'.$idrol.'" select >'.$rol.'</option>';
+            }
+            else if($idrol == 3){
+                $option = '<option value="'.$idrol.'" select >'.$rol.'</option>';
+            }
+        }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -65,14 +90,15 @@
                 <div class="alert">
                     <?php echo isset($alert) ? $alert : " " ?>
                 </div>
+                <input type="hidden" name="idusuario" value=<?php echo $iduser?>>
                 <label for="name" class="form__label">Nombre <span class="text-danger">*</span></label>
-                <input type="text" name="name" id="name" class="form__input" placeholder="Nombre Completo" required>
+                <input type="text" name="name" id="name" class="form__input" placeholder="Nombre Completo" value=<?php echo $nombre?> required>
                 <label for="email" class="form__label">Email <span class="text-danger">*</span></label>
-                <input type="email" name="email" id="email" class="form__input" placeholder="Correo Electronico" required>
+                <input type="email" name="email" id="email" class="form__input" placeholder="Correo Electronico" value=<?php echo $correo?> required>
                 <label for="user" class="form__label">Usuario <span class="text-danger">*</span></label>
-                <input type="text" name="user" id="user" class="form__input" placeholder="Usuario" required>
-                <label for="password" class="form__label">Contraseña <span class="text-danger">*</span></label>
-                <input type="password" name="password" class="form__input" id="password" placeholder="Contraseña" required>
+                <input type="text" name="user" id="user" class="form__input" placeholder="Usuario" value=<?php echo $usuario?> required>
+                <label for="password" class="form__label">Contraseña <span class="text-danger"></span></label>
+                <input type="password" name="password" class="form__input" id="password" placeholder="Contraseña">
                 <label for="rol" class="form__label">Tipo Usuario <span class="text-danger">*</span></label>
 
                 <?php
@@ -80,8 +106,9 @@
                 $result_rol = mysqli_num_rows($query_rol);
                 ?>
 
-                <select name="rol" id="rol" class="form__input" require>
+                <select name="rol" id="rol" class="form__input notItem" require>
                     <?php
+                    echo $option;
                     if ($result_rol > 0) {
 
                         while ($rol = mysqli_fetch_array($query_rol)) {
