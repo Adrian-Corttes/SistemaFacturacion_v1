@@ -7,6 +7,6 @@
     $conection = @mysqli_connect($host,$user,$password,$bd);
     
     if(!$conection){
-        echo "Error en la conexion";
+        echo "Ooops!..  Error en la conexion";
     }
 ?>

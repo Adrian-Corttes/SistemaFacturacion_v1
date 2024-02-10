@@ -1,14 +1,15 @@
 *{
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
+
 html{
     font-family: "Roboto", Helvetica Neue, Helvetica, Arial, sans-serif;
 }
+
 /*FORMULARIO DE ACCCESO*/
 .title{
     font-weight: 100;
+    position: fixed;
 }
 .container_form{
     width: 100%;
@@ -51,4 +52,14 @@ html{
     background-color: #242424;
     color: #fff;
     cursor: pointer;
+}
+.form__button:hover{
+    background-color: #120a7c;
+    transition: 1s;
+}
+
+.alert{
+    color: red;
+    text-align: center;
+    padding: 5px;
 }
