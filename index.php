@@ -56,12 +56,12 @@ if (!empty($_SESSION['active'])) {
 
 <body>
     <section class="container">
-        <h2 class="title">Point of Sale System V1.0</h2>
-        <section class="container_form">
-            <form action="#" method="POST" class="form">
-                <h2 class="form__title">Inicio de Sesión</h2>
+        
+        <form action="#" method="POST" class="form">
+                <h1>Login</h1>
+                <h2 class="form__title">BillingSys</h2>
 
-                <img src="./img/huella-dactilar.png" alt="Img_Login">
+                <img src="./img/huella-dactilar.png" class="form__img" alt="Img_Login">
                 <input type="text" name="user" id="user" class="form__input" placeholder="Usuario">
                 <input type="password" name="password" id="password" class="form__input" placeholder="Contraseña">
 
@@ -70,7 +70,9 @@ if (!empty($_SESSION['active'])) {
 
                 <button type="submit" class="form__button">Ingresar al Sistema</button>
             </form>
-        </section>
+        
+
+        <!-- <footer>Create by Softvipad &#174 | Copyright &#169 2024 | V1.0</footer> -->
     </section>
 
 </body>
