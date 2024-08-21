@@ -3,7 +3,6 @@ session_start();
 //Validamos si la sesión esta activa
 if (!empty($_SESSION['active'])) {
     header('location: sistema/');
-    
 } else {
     $alert = "";
     //validamos el envio del formulario
@@ -13,7 +12,8 @@ if (!empty($_SESSION['active'])) {
             $alert = "Campos vacíos. Por favor, ingrese su usuario y contraseña";
         } else {
             require_once "./conexion.php";
-            // mysqli_real_escape_string, esta función se utiliza para eliminar los caracteres extraños.
+
+            //esta función se utiliza para eliminar los caracteres extraños.
             $user = mysqli_real_escape_string($conection, $_POST["user"]);
             //se encripta la contraseña con la funcion md5().
             $pass = md5(mysqli_real_escape_string($conection, $_POST["password"]));
@@ -50,27 +50,27 @@ if (!empty($_SESSION['active'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="shortcut icon" href="./img/favicon.png" type="image/x-icon">
-    <link rel="stylesheet" href="./css/normalize.css">
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./public/css/normalize.css">
+    <link rel="stylesheet" href="./public/css/index.css">
 </head>
 
 <body>
     <section class="container">
-        
+
         <form action="#" method="POST" class="form">
-                <h1>Login</h1>
-                <h2 class="form__title">BillingSys</h2>
+            <h1>Login</h1>
+            <h2 class="form__title">BillingSys</h2>
 
-                <img src="./img/huella-dactilar.png" class="form__img" alt="Img_Login">
-                <input type="text" name="user" id="user" class="form__input" placeholder="Usuario">
-                <input type="password" name="password" id="password" class="form__input" placeholder="Contraseña">
+            <img src="./public/img/huella-dactilar.png" class="form__img" alt="Img_Login">
+            <input type="text" name="user" id="user" class="form__input" placeholder="Usuario">
+            <input type="password" name="password" id="password" class="form__input" placeholder="Contraseña">
 
-                <div class="alert"><?php echo (isset($alert) ? $alert : "") //Operador ternario
-                                    ?></div>
+            <div class="alert"><?php echo (isset($alert) ? $alert : "") //Operador ternario
+                                ?></div>
 
-                <button type="submit" class="form__button">Ingresar al Sistema</button>
-            </form>
-        
+            <button type="submit" class="form__button">Ingresar al Sistema</button>
+        </form>
+
 
         <!-- <footer>Create by Softvipad &#174 | Copyright &#169 2024 | V1.0</footer> -->
     </section>
