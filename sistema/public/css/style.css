@@ -167,12 +167,7 @@ nav li ul li:last-child{
 	margin: 10px auto;
 	color: #333333;
 }
-.notItem option:first-child{
-	display: none;
-}
-.text-danger{
-	color: #F44336 !important;
-}
+
 .form__input{
 	display: block;
 	width: 100%;
@@ -182,6 +177,13 @@ nav li ul li:last-child{
 	border: 1px solid #ddd;
 	border-radius: 3px;
 }
+.notItem option:first-child{
+	display: none;
+}
+.text-danger{
+	color: #F44336 !important;
+}
+
 .btn_save{
 	font-size: 16px;
 	background: rgb(135, 100, 184);;
