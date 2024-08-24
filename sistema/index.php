@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<?php include "./components/scripts.php"?>
-	<title>BillingSys</title>
+	<title>SoftVipad</title>
 </head>
 <body>
 	<?php include "./components/header.php"?>

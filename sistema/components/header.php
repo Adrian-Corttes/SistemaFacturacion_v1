@@ -8,7 +8,7 @@ if(empty($_SESSION['active'])){
 ?>
 <header>
     <div class="header">
-        <h1>BillingSys</h1>
+        <h1>SoftVipad, Factu</h1>
         <div class="optionsBar">
             <p><?php echo fechaC();?></p>
             <span>|</span>
