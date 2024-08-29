@@ -40,15 +40,24 @@ if (!empty($_POST)) {
 	<meta charset="UTF-8">
 	<?php include "./components/scripts.php" ?>
 	<title>Registro Usuario</title>
-	
+
 </head>
 
 <body>
 	<?php include "./components/header.php" ?>
-	<section id="container">
+	<section class="container">
 		<div class="form_register">
-			<h1 class="form_register__title">Registro usuarios</h1>
+
+			<div class="container_title">
+				<h1 class="form_register__title">Registro usuarios</h1>
+				<a href="./index.php" class="btn_close" title="Cerrar"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+						<path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+					</svg></a>
+
+			</div>
+
 			<div class="alert"><?php echo isset($alert) ? $alert : " " ?></div>
+
 			<form action="#" method="POST" class="form">
 				<label for="name" class="form__label">Nombre <span class="text-danger">*</span></label>
 				<input type="text" name="name" id="name" class="form__input" placeholder="Nombre Completo" required>
@@ -84,7 +93,7 @@ if (!empty($_POST)) {
 
 				</select>
 				<input type="submit" value="Guardar" class="btn_save">
-				<button class="btn_save"><a href="./index.php">Cerrar</a></button>
+
 			</form>
 			</form>
 		</div>
