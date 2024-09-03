@@ -1,6 +1,6 @@
 <?php
 include "../conexion.php";
-
+//Validación del formulario
 if (!empty($_POST)) {
 	$alert = "";
 
@@ -92,8 +92,7 @@ if (!empty($_POST)) {
 					?>
 
 				</select>
-				<input type="submit" value="Guardar" class="btn_save">
-
+					<input type="submit" value="Guardar" class="btn_save">
 			</form>
 			</form>
 		</div>

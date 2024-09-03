@@ -144,7 +144,7 @@ nav li ul li:last-child{
 
 /**** FORMULARIO DE REGISTRO ******/
 .form_register{
-	width: 450px;
+	width: 400px;
 	margin: auto;
 	border: solid 1px #ddd;
 	border-radius: 3px;
@@ -182,7 +182,7 @@ nav li ul li:last-child{
 }
 .form__label{
 	display: block;
-	font-size: 16px;
+	font-size: 13px;
 	margin: 10px auto;
 	color: #333333;
 }
@@ -190,9 +190,9 @@ nav li ul li:last-child{
 .form__input{
 	display: block;
 	width: 100%;
-	padding: 10px;
+	padding: 7px;
 	outline: none;
-	font-size: 16px;
+	font-size: 13px;
 	border: 1px solid #ddd;
 	border-radius: 3px;
 }
@@ -204,15 +204,15 @@ nav li ul li:last-child{
 }
 
 .btn_save{
-	display: flex;
-	font-size: 16px;
-	background: rgb(135, 100, 184);;
+	font-size: 12px;
+	background: rgb(135, 100, 184);
 	color: #FFF;
 	margin: 10px 0 0 0;
 	font-weight: normal;
 	padding: 7px 12px;
 	border: 0;
 	cursor: pointer;
+	width: 100%;
 	
 }
 .btn_save:hover{
