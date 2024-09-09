@@ -323,3 +323,67 @@ nav li ul li:last-child{
 .edit-icon:hover{
 	color: rgb(124, 77, 189); ;
 }
+
+/***** ELIMINAR CONFIRMAR USUARIO *****/
+.data_delete{
+	position:absolute;
+	text-align: center;
+	background-color: #FFF;
+	padding: 20px;
+	width: 500px;
+	top: 20%;
+	left: 30%;
+}
+.data_delete h2{
+	margin-bottom: 20px;
+}
+
+.data_delete p{
+	text-align: justify;
+	margin-left: 110px;
+}
+
+.data_delete span{
+	font-weight: bold;
+	font-size: 12pt;
+}
+.btn {
+	display: inline-block;
+	width: 125px; /* Ancho de ambos botones */
+	background-color: #478BA2; /* Fondo color azul */
+	color: #FFF; /* Texto blanco */
+	padding: 5px; /* Relleno interno */
+	cursor: pointer; /* Mano al pasar sobre el botón */
+	margin: 15px; /* Margen alrededor del botón */
+	text-align: center; /* Centrar el texto */
+	border: none; /* Sin borde para el botón de envío */
+	text-decoration: none; /* Sin subrayado para el enlace */
+	border-radius: 5px; /* Opcional: bordes redondeados */
+  }
+  
+  /* Estilo específico para el enlace "Cancelar" */
+  .btn_cancel {
+	background-color: #478BA2; /* Color de fondo (igual que el botón) */
+  }
+  
+  /* Estilo específico para el botón de envío "Aceptar" */
+  .btn_ok {
+	background-color: #478BA2;
+	padding: 5px;
+	font-size: 16px;/* Mismo color de fondo */
+  }
+ 
+  
+  /* Hover para ambos botones */
+  .btn:hover {
+	background-color: #3a7280; /* Cambio de color al hacer hover */
+  }
+  .btn_ok:hover{
+	background-color: #F44336;
+  }
+  /* Asegura que los estilos del botón <input> sean iguales al <a> */
+  input[type="submit"].btn {
+	appearance: none; /* Elimina los estilos predeterminados del botón */
+	-webkit-appearance: none; /* Elimina estilos en navegadores WebKit */
+	-moz-appearance: none; /* Elimina estilos en navegadores Gecko */
+  }
