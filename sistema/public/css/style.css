@@ -387,3 +387,34 @@ nav li ul li:last-child{
 	-webkit-appearance: none; /* Elimina estilos en navegadores WebKit */
 	-moz-appearance: none; /* Elimina estilos en navegadores Gecko */
   }
+
+  /***** ELIMINAR CONFIRMAR USUARIO *****/
+.paginador ul{
+	display: flex;
+	justify-content: end;
+	list-style: none;
+	padding: 15px;
+	background-color: #FFF;
+	margin-top: 15px;
+}
+
+.paginador a, .pageSelected{
+	color: #428BCA;
+	border: solid 1px #DDD;
+	padding: 5px;
+	display: inline-block;
+	font-size: 14px;
+	text-align: center;
+	width: 35px;
+	margin: 1px;
+}
+
+.paginador a:hover{
+	background-color: #DDD;
+}
+
+.pageSelected{
+	color: #FFF;
+	background: #428BCA;
+	border: solid 1px #428BCA;
+}

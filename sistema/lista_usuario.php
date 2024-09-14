@@ -38,11 +38,28 @@ include "../conexion.php"
             <th>Rol</th>
             <th>Acciones</th>
          </tr>
-         </thead>
 
          <?php
-         //Mostrar listado de
-         $query = mysqli_query($conection, "SELECT u.idusuario,u.nombre,u.correo,u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1");
+         //Query Paginador
+         $query_registe = mysqli_query($conection, "SELECT COUNT(*) AS total_registro FROM usuario WHERE estatus = 1;");
+         $result_register = mysqli_fetch_array($query_registe);
+         $tatal_registro = $result_register['total_registro'];
+
+         $por_pagina = 10;
+
+         if(empty($_GET['pagina'])){
+            $pagina = 1;
+         }
+         else{
+            $pagina  = $_GET['pagina'];
+         }
+
+         $desde = ($pagina - 1) * $por_pagina;
+         //la función Ceil nos redondea el numero a un entero
+         $total_paginas = ceil($tatal_registro / $por_pagina);
+
+         //Query para Mostrar el listado de usuarios
+         $query = mysqli_query($conection, "SELECT u.idusuario,u.nombre,u.correo,u.usuario,r.rol FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1 ORDER BY idusuario ASC LIMIT $desde,$por_pagina");
          $result = mysqli_num_rows($query);
 
          if ($result > 0) {
@@ -82,6 +99,34 @@ include "../conexion.php"
 
 
       </table>
+      <!-- Paginador -->
+       <div class="paginador">
+         <ul>
+            <?php
+               if($pagina != 1){
+            ?>
+            
+            <li><a href="?pagina=<?php echo 1;?>">|<</a></li>
+            <li><a href="?pagina=<?php echo $pagina -1;?>"><<</a></li>
+            <?php
+            }
+               for($i =1; $i <= $total_paginas; $i ++){
+                  if($i == $pagina ){
+                     echo'<li class="pageSelected">'.$i.'</li>';
+                  }
+                  else{
+                     echo'<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
+                  }
+               }
+
+               if($pagina != $total_paginas){
+            ?>
+            <li><a href="?pagina=<?php echo $pagina + 1;?>">>></a></li>
+            <li><a href="?pagina=<?php echo $total_paginas;?>">>|</a></li>
+            <?php }?>
+         </ul>
+       </div>
+
    </section>
 
    <?php include "./components/footer.php" ?>
