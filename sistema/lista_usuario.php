@@ -19,6 +19,14 @@ include "../conexion.php"
             <div class="datatable-title">
                <h1 class="datatable-title__title">Lista de Usuarios</h1>
             </div>
+
+            <div class="serach">
+               <form action="buscar_usuario.php" method="GET" class="">
+                  <input type="text" name="busqueda" id="busqueda" class="buscar" placeholder="Buscar">
+                  <input type="submit" value="Buscar" class="btn_search">
+               </form>
+            </div>
+
             <div class="datatable-links">
                <a href="./registro_usuario.php" class="datatable-header__add-btn" title="Agregar nuevo usuario"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
                      <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
@@ -47,10 +55,9 @@ include "../conexion.php"
 
          $por_pagina = 10;
 
-         if(empty($_GET['pagina'])){
+         if (empty($_GET['pagina'])) {
             $pagina = 1;
-         }
-         else{
+         } else {
             $pagina  = $_GET['pagina'];
          }
 
@@ -78,12 +85,12 @@ include "../conexion.php"
 
                            <a href="./eliminar_confirmar_usuario.php?id=<?php echo $data['idusuario'] ?>" class="delete-icon" title="Eliminar">
                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-                              <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
-                              <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
+                                 <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
+                                 <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z" />
                               </svg>
                            </a>
                         <?php } ?>
-                        
+
                         <!-- Enviamos datos mediate URL -->
                         <a href="./editar_usuario.php?id=<?php echo $data['idusuario'] ?>" class="edit-icon" title="Editar"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
                               <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
@@ -100,32 +107,34 @@ include "../conexion.php"
 
       </table>
       <!-- Paginador -->
-       <div class="paginador">
+      <div class="paginador">
          <ul>
             <?php
-               if($pagina != 1){
+            if ($pagina != 1) {
             ?>
-            
-            <li><a href="?pagina=<?php echo 1;?>">|<</a></li>
-            <li><a href="?pagina=<?php echo $pagina -1;?>"><<</a></li>
+
+               <li><a href="?pagina=<?php echo 1; ?>">|<< /a>
+               </li>
+               <li><a href="?pagina=<?php echo $pagina - 1; ?>">
+                     <<< /a>
+               </li>
             <?php
             }
-               for($i =1; $i <= $total_paginas; $i ++){
-                  if($i == $pagina ){
-                     echo'<li class="pageSelected">'.$i.'</li>';
-                  }
-                  else{
-                     echo'<li><a href="?pagina='.$i.'">'.$i.'</a></li>';
-                  }
+            for ($i = 1; $i <= $total_paginas; $i++) {
+               if ($i == $pagina) {
+                  echo '<li class="pageSelected">' . $i . '</li>';
+               } else {
+                  echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
                }
+            }
 
-               if($pagina != $total_paginas){
+            if ($pagina != $total_paginas) {
             ?>
-            <li><a href="?pagina=<?php echo $pagina + 1;?>">>></a></li>
-            <li><a href="?pagina=<?php echo $total_paginas;?>">>|</a></li>
-            <?php }?>
+               <li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
+               <li><a href="?pagina=<?php echo $total_paginas; ?>">>|</a></li>
+            <?php } ?>
          </ul>
-       </div>
+      </div>
 
    </section>
 

@@ -264,8 +264,8 @@ nav li ul li:last-child{
 }
 .datatable-links{
 	display: flex;
- 	 gap: 30px;
-	 align-items: center;
+ 	gap: 30px;
+	align-items: center;
 }
 .datatable-header__add-btn{
 	display: inline-block;
@@ -321,7 +321,7 @@ nav li ul li:last-child{
 	color: #242424;
 }
 .edit-icon:hover{
-	color: rgb(124, 77, 189); ;
+	color: rgb(124, 77, 189);
 }
 
 /***** ELIMINAR CONFIRMAR USUARIO *****/
@@ -418,3 +418,28 @@ nav li ul li:last-child{
 	background: #428BCA;
 	border: solid 1px #428BCA;
 }
+
+/***** FORMULARIO BUSQUEDA *****/
+.serach{
+	display: flex;
+	gap: 5px;
+	align-items: center;
+	margin-left: 700px;
+	
+}
+.buscar {
+    padding: 5px;
+    margin-left: 0; /* Elimina el margen izquierdo */
+    display: inline-block; /* Alinea en línea*/
+}
+
+.btn_search {
+    background: rgb(124, 77, 189);
+    color: #FFF;
+    padding: 6px;
+	border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block; /* Alinea en línea */
+}
+
