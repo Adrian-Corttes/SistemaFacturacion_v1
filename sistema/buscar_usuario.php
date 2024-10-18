@@ -14,9 +14,12 @@ include "../conexion.php"
     <?php include "./components/header.php" ?>
 
     <section class="container">
-        <!-- Validamos que infrmación trae la busqueda  -->
+       
         <?php
+        //Capturamos la información que viene en la URL
         $busqueda = strtolower($_REQUEST['busqueda']);
+        //Función strtolower() onvierte mayúsculas a minúsculas.
+
         if (empty($busqueda)) {
             header("location: lista_usuario.php");
         }
@@ -27,14 +30,14 @@ include "../conexion.php"
                 <div class="datatable-title">
                     <h1 class="datatable-title__title">Lista de Usuarios</h1>
                 </div>
-
+                    <!-- Buscador -->
                 <div class="serach">
                     <form action="buscar_usuario.php" method="GET" class="">
                         <input type="text" name="busqueda" id="busqueda" class="buscar" placeholder="Buscar" value="<?php echo $busqueda; ?>">
                         <input type="submit" value="Buscar" class="btn_search">
                     </form>
                 </div>
-
+                <!-- Btn nuevo usuario -->
                 <div class="datatable-links">
                     <a href="./registro_usuario.php" class="datatable-header__add-btn" title="Agregar nuevo usuario"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
                             <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
@@ -56,7 +59,7 @@ include "../conexion.php"
             </tr>
 
             <?php
-            //Query Paginador
+            //Condicional par los roles.
             $rol = '';
 
             if ($busqueda == 'administrador') {
@@ -67,10 +70,12 @@ include "../conexion.php"
                 $rol = "OR rol LIKE '%3%'";
             }
 
+            //Query para la usqueda
             $query_registe = mysqli_query($conection, "SELECT COUNT(*) AS total_registro FROM usuario WHERE (idusuario LIKE '%$busqueda%' OR nombre LIKE '%$busqueda%' OR correo LIKE '%$busqueda%' OR usuario LIKE '%$busqueda%' $rol) AND estatus = 1;");
             $result_register = mysqli_fetch_array($query_registe);
             $tatal_registro = $result_register['total_registro'];
 
+            //Logica para el paginador
             $por_pagina = 10;
 
             if (empty($_GET['pagina'])) {
@@ -98,9 +103,9 @@ include "../conexion.php"
                             <td><?php echo $data['usuario'] ?></td>
                             <td><?php echo $data['rol'] ?></td>
                             <td>
-                                <!-- Enviamos datos mediate URL -->
+        
                                 <?php if ($data['idusuario'] != 1) { ?>
-
+                                    <!-- Btn eliminar usuario, Enviamos datos mediate URL-->
                                     <a href="./eliminar_confirmar_usuario.php?id=<?php echo $data['idusuario'] ?>" class="delete-icon" title="Eliminar">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                             <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z" />
@@ -124,32 +129,31 @@ include "../conexion.php"
 
 
         </table>
+
         <!-- Paginador -->
         <div class="paginador">
             <ul>
                 <?php
+                //validación para busquedas no encontradas.
                 if ($pagina != 1) {
                 ?>
 
-                    <li><a href="?pagina=<?php echo 1; ?>">|<< /a>
-                    </li>
-                    <li><a href="?pagina=<?php echo $pagina - 1; ?>">
-                            <<< /a>
-                    </li>
+                    <li><a href="?pagina=<?php echo 1; ?> &busqueda <?php echo $busqueda ?>"> |< </a></li>
+                    <li><a href="?pagina=<?php echo $pagina - 1; ?> &busqueda <?php echo $busqueda ?>"> << </a></li>
                 <?php
                 }
                 for ($i = 1; $i <= $total_paginas; $i++) {
                     if ($i == $pagina) {
                         echo '<li class="pageSelected">' . $i . '</li>';
                     } else {
-                        echo '<li><a href="?pagina=' . $i . '">' . $i . '</a></li>';
+                        echo '<li><a href="?pagina=' .$i. '&busqueda='.$busqueda.'">' .$i. '</a></li>';
                     }
                 }
 
                 if ($pagina != $total_paginas) {
                 ?>
-                    <li><a href="?pagina=<?php echo $pagina + 1; ?>">>></a></li>
-                    <li><a href="?pagina=<?php echo $total_paginas; ?>">>|</a></li>
+                    <li><a href="?pagina=<?php echo $pagina + 1; ?> &busqueda <?php echo $busqueda ?>">>></a></li>
+                    <li><a href="?pagina=<?php echo $total_paginas; ?> &busqueda <?php echo $busqueda ?>">>|</a></li>
                 <?php } ?>
             </ul>
         </div>
